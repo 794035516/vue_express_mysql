@@ -27,9 +27,9 @@ export default {
       .then(res => {
         // console.log(res);
         if(res.data instanceof Array){
-            this.lessons = res.data;
+            this.store = res.data;
           }else if(res.data instanceof Object){
-            this.lessons.push(res.data);
+            this.store.push(res.data);
           }
         // this.store = res.data;
       });
