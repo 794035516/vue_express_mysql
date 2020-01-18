@@ -26,7 +26,12 @@ export default {
       })
       .then(res => {
         // console.log(res);
-        this.store = res.data;
+        if(res.data instanceof Array){
+            this.lessons = res.data;
+          }else if(res.data instanceof Object){
+            this.lessons.push(res.data);
+          }
+        // this.store = res.data;
       });
   },
   created: function() {},

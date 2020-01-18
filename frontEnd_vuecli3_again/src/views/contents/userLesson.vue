@@ -2,6 +2,7 @@
   <!-- <div>{{user}} nihao</div> -->
   <div>
     <!-- <div>{{lesson}}</div> -->
+    <!-- {{test}} -- {{user}} -->
     <li v-for="lesson in lessons" :key="lesson.id">
       <class :lesson="lesson"  :type="'study'"></class>
     </li>
@@ -34,7 +35,11 @@ export default {
       })
       .then(res => {
           // console.log(res.data);
-          this.lessons = res.data;
+          if(res.data instanceof Array){
+            this.lessons = res.data;
+          }else if(res.data instanceof Object){
+            this.lessons.push(res.data);
+          }
         //   console.log(res.data);
       })
   },

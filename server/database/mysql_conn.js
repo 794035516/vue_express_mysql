@@ -1,6 +1,6 @@
 var mysql = require("mysql")
 
-let connection = {
+let link = {
 
     host: 'localhost',
     user: 'root',
@@ -9,14 +9,14 @@ let connection = {
     // multipleStatements:true
     database: "express",
 }
-var link = mysql.createConnection(connection);
+var connection = mysql.createConnection(link);
 
-link.connect(()=>{
+connection.connect(()=>{
     console.log('the connection of database successful');
 })
 
-link.query(`use ${connection.database}`,(err,results) =>{
+connection.query(`use ${link.database}`,(err,results) =>{
     console.log('use database express..');
 })
 
-module.exports = link;
+module.exports = connection;
