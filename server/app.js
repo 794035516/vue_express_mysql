@@ -1,12 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var bodyParser = require("body-parser")
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+const upload = require('./routes/upload')
+var portNumber = 888;
 var app = express();
 
 // view engine setup
@@ -17,9 +19,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// 获取静态图片等
+app.use(express.static(path.join(__dirname, 'static')));
+
+// 配置静态资源目录，整一个文件夹，通过域名访问
+// app.use(express.static(path.join(__dirname,'../frontEnd_vuecli3_again/static')));
+
 
 app.use('/', indexRouter);
+app.use('/upload',upload);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -38,7 +46,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(888,() =>{
+app.listen(portNumber,() =>{
   console.log("server already start up...")
 })
 

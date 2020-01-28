@@ -3,9 +3,15 @@
   <div>
     <!-- <div>{{lesson}}</div> -->
     <!-- {{test}} -- {{user}} -->
+    <div v-if="lessons">
+
     <li v-for="lesson in lessons" :key="lesson.id">
       <class :lesson="lesson"  :type="'study'"></class>
     </li>
+    </div>
+    <div v-else>
+      <nullLesson message="暂无课程" />
+    </div>
     <!-- <img src="/static/lesson/dwarvesAndDiants.png" alt=""> -->
     <!-- <img :src="require('@/static/people.png')" alt=""> -->
   </div>
@@ -13,16 +19,19 @@
 
 <script>
 import lesson from '../../components/lesson';
+import nullLesson from '../../components/null';
+
 export default {
   name: "",
   data: function() {
     return {
       lessons:[],
-      user:this.$store.state.user
+      user:this.$store.state.user,
     };
   },
   components: {
-    'class':lesson
+    'class':lesson,
+    nullLesson
   },
   computed: {
     test() {
@@ -34,13 +43,14 @@ export default {
           id:this.user.id,
       })
       .then(res => {
+        this.lessons = null;
           // console.log(res.data);
           if(res.data instanceof Array){
             this.lessons = res.data;
           }else if(res.data instanceof Object){
             this.lessons.push(res.data);
           }
-        //   console.log(res.data);
+          console.log(res.data);
       })
   },
   // mo
@@ -54,4 +64,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

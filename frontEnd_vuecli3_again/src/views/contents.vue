@@ -72,7 +72,7 @@ export default {
 
 <style scoped>
 .right{  
-  width: 1013px;
+  width: 800px;
   margin: 0 auto;
 }
 

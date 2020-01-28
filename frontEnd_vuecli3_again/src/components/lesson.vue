@@ -8,7 +8,7 @@
         <el-main id="content">
           <el-row>
             <el-col :span="6">
-              <h3>{{lesson.lessonName}}</h3>
+              <span class="title">{{lesson.lessonName}}</span>
             </el-col>
             <el-col :span="6">{{lesson.teacherName}}</el-col>
             <el-col :span="6">
@@ -75,7 +75,7 @@ export default {
 }
 
 .el-main#content {
-  padding-bottom: 20px !important;
+  padding-bottom: 5px !important;
   border-bottom: 1px dotted gray;
   box-sizing: border-box;
 }
@@ -86,6 +86,12 @@ li {
   /* width: 824px; */
   /* margin-left:10px; */
 }
+
+.title{
+  font-size: 22px;
+  font-weight: 700;
+}
+
 .el-aside {
   width: 200px !important;
 }

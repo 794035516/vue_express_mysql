@@ -11,22 +11,22 @@
 </script>
 
 <style>
-*{
+/* *{
   padding:0;
   margin:0;
-}
+} */
 
 
 
 body{
-  min-height: 100vh;
   box-sizing: border-box;
   font-family: 'microsoft Yahei',"Avenir", Helvetica, Arial, sans-serif;
   position: relative;
 }
 html,body,#app{
-  height: 100vh;
   /* background-color: green; */
+  padding:0;
+  margin:0;
   position: relative;
 }
 li {
@@ -47,4 +47,9 @@ img{
   width:200px;
   height:116px
 }
+
+
+
+
+
 </style>

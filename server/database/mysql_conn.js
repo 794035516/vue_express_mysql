@@ -1,7 +1,7 @@
 var mysql = require("mysql")
 
 let link = {
-
+    port:3306,
     host: 'localhost',
     user: 'root',
     password: "794035516",

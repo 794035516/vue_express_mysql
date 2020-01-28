@@ -35,7 +35,11 @@ export default {
       });
   },
   created: function() {},
-  methods: {}
+  methods: {
+    toAdd(){
+      this.router.push("/main")
+    }
+  }
 };
 </script>
 

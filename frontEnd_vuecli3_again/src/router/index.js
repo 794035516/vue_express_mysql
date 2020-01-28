@@ -5,7 +5,6 @@ import login from '../views/login.vue'
 //主页面
 import main from '../views/main.vue'
 
-import contents from '../views/contents'
 
 Vue.use(VueRouter)
 
@@ -57,6 +56,11 @@ const routes = [
         path: "lesson",
         name: "lesson",
         component: () => import("../views/main_content/lesson")
+      },
+      {
+        path:"addArticle",
+        name:"addArticle",
+        component:()=>import('../components/addArticle')
       }
     ]
   }
