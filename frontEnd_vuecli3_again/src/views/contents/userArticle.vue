@@ -3,13 +3,12 @@
     <div>
       <router-link to="/main/addArticle">添加文章</router-link>
     </div>
-    <img :src="img" alt="error" />
     <div v-for="article in articles" :key="article.id" class="article">
-      <el-container>
+      <el-container @click.native="showArticle(article.id)" class="pointer" >
         <el-aside>
           <img :src="article.pic" alt="error" class="img" />
         </el-aside>
-        <el-container>
+        <el-container class="border">
           <el-main>
             <el-row>
               <el-col :span="4">
@@ -41,8 +40,7 @@ export default {
   data: function() {
     return {
       id: this.$store.state.user.id,
-      articles: [],
-      img: ""
+      articles: []
     };
   },
   components: {},
@@ -61,12 +59,6 @@ export default {
           this.articles.push(res.data);
         }
       });
-    // this.axios.get('/api/index')
-    // .then(res=>{
-    // console.log(res.data.data,"---",res.data.net,"--",res.data.img);;
-    // this.img = res.data.data.net+res.data.data.img;
-    // this.img = imgUrl;
-    // })
   },
   created: function() {},
   methods: {
@@ -84,6 +76,10 @@ export default {
           }
           // console.log(res.data);
         });
+    },
+    showArticle(articleId){
+      console.log("showArticle");
+      this.$router.push({path:'/main/user_contents/showArticle',query:{id:articleId}})
     }
   }
 };
@@ -91,14 +87,20 @@ export default {
 
 <style scoped>
 .el-main {
-  border-bottom: 1px dotted gray;
   box-sizing: border-box;
+  height:90px;
   padding: 5px 0 0 5px !important;
   margin: 10px 0 20px;
 }
 
+.border {
+  border-bottom: 1px dotted gray;
+  height: 90px;
+}
+
 .el-aside {
   width: 200px !important;
+  height: 90px;
 }
 
 .el-row {
@@ -109,9 +111,10 @@ export default {
   width: 169px;
   height: 85px;
 }
-.article{
-  border:1px solid red;
-  height:110px;
+.article {
+  height: 110px;
 }
-
+.pointer {
+  cursor: pointer;
+}
 </style>

@@ -84,7 +84,8 @@ router.post('/getUserLesson',(req,res) =>{
 })
 
 router.post('/getUserArticle',(req,res) =>{
-  var sql = `select u.nickName as author,a.pic as pic,a.times as times,a.title as title,a.class as type,a.content as content from article as a
+  var sql = `select a.id as id ,u.nickName as author,a.pic as pic,a.times as times,a.title as title,
+    a.class as type,a.content as content from article as a
   left join user_article as ua on ua.articleId = a.id
   left join user as u on u.id = ua.userId
   where u.id = ${req.body.id};`;
@@ -96,7 +97,18 @@ router.post('/getUserArticle',(req,res) =>{
     }
   })
 })
-
+/* 
+  select title,class,content,pic,times from article where id = 100;
+*/ 
+router.get('/getUserSingleArticle',(req,res)=>{
+  var sql = `select title,class,content,pic,times from article where id = ${req.query.id};`;
+  connection.query(sql,(err,results)=>{
+    if(err){
+      res.send(`${err} , ${sql}`);
+    }
+    res.send(results);
+  })
+})
 /* 
 
   select l.name,l.pic lessonName,group_concat(t.name) teacherName,l.cost lessonCost from lesson as l

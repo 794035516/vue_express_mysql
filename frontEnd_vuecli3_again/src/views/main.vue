@@ -1,6 +1,6 @@
 <template>
   <!--  登陆后的界面 -->
-  <div>
+  <div >
     <!-- 主体内容 -->
     <div class="div">
       <el-container class="main_content">
@@ -48,8 +48,8 @@
         </el-header>
 
         <!-- 下边路由视图 -->
-        <div>
-          <router-view></router-view>
+        <div class="child">
+          <router-view ></router-view>
         </div>
       </el-container>
     </div>
@@ -144,13 +144,14 @@ export default {
   color: blue !important;
 }
 /* 主体内容 */
-.div {
-  position: relative;
-  min-height: 82vh;
-  /* background-color: blueviolet; */
-}
+div.div {
+  min-height: calc(100vh - 88px);
+   /* background-color: blueviolet; */
+} 
 
-footer {
+
+footer{
+  height: 60px;
   background-color: #4b4b4b;
   color: #787b82;
   width: 100%;
@@ -161,5 +162,10 @@ footer {
 footer p {
   font-size: 14px;
   word-spacing: 0.05em;
+}
+
+.child{
+  min-height: calc(100vh - 88px - 60px);
+  background: blue;
 }
 </style>

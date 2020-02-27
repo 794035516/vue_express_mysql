@@ -41,9 +41,14 @@ const routes = [
             component: () => import('../views/contents/userStore')
           },
           {
-            path:"article",
-            name:"article",
+            path: "article",
+            name: "article",
             component: () => import('../views/contents/userArticle')
+          },
+          {
+            path: "showArticle",
+            name: "showArticle",
+            component: () => import('../views/contents/showArticle')
           }
         ]
       },
@@ -58,9 +63,9 @@ const routes = [
         component: () => import("../views/main_content/lesson")
       },
       {
-        path:"addArticle",
-        name:"addArticle",
-        component:()=>import('../components/addArticle')
+        path: "addArticle",
+        name: "addArticle",
+        component: () => import('../components/addArticle')
       }
     ]
   }
@@ -73,4 +78,14 @@ const router = new VueRouter({
 
 })
 
+//捕获到loading chunk failed的错误的时候重新渲染目标页面
+router.onError(err => {
+  const pattern = /Loading chunk (\d)+ failed/g;
+  const isChunkLoadFailed = err.message.match(pattern);
+  if (isChunkLoadFailed) {
+    const targetPath = router.history.pending.fullPath;
+    router.replace(targetPath);
+  }
+
+})
 export default router
